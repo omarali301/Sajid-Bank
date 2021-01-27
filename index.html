@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+</head>
+<body>
+
+    <div id="login-area">
+
+
+        <h1 class="text-center">Welcome to sajid bank limited</h1>
+
+        <div id="login-submit">
+
+            <h5>Email : </h5>
+
+            <input type="text" class="form-control status" placeholder="your Email please">
+
+            <h5>password : </h5>
+            <input type="password" class="form-control status"  placeholder="your password please">
+
+            <button id="login" class="btn btn-success status">Submit</button>
+
+        </div>
+
+
+    </div>
+
+    <container  id="transection-area">
+        <h1 class="text-center mb-5">Transection your Deposit</h1>
+           
+            <div class="row">
+                <div class="col-md-4">
+
+                    <div class="deposit">
+                        
+                        <h5>Deposit</h5>
+                        <h3>$<span id="current-deposit">00</span></h3>
+
+                        </div>
+
+                </div>
+
+               
+
+                    <div class="col-md-4">
+
+                        <div class="withdrow">
+                            
+                            <h5>Deposit</h5>
+                            <h3>$<span id="current-withdrow">00</span></h3>
+    
+                            </div>
+    
+                    </div>
+
+            
+
+                    <div class="col-md-4">
+
+                        <div class="total">
+                            
+                            <h5>Deposit</h5>
+                            <h3>$<span id="current-total">100</span></h3>
+    
+                            </div>
+    
+                    </div>
+
+            </div>
+
+
+            <div class="row mt-5">
+
+                <div class="col-md-6">
+
+                <div class="depositbox">
+
+                    <h5>Deposit</h5>
+
+                    <input id="deposit-input" type="text" placeholder="please entire your amount">
+                    <br>
+                    <button id="deposit-button" class="btn btn-success mt-3">Submit</button>
+
+                </div>
+
+                </div>
+                <div class="col-md-6">
+
+                    <div class="withdrowbox">
+
+                        <h5>Deposit</h5>
+    
+                        <input id="withdrow-input" type="text" placeholder="please entire your amount">
+                        <br>
+                        <button id="witdrow-button" class="btn btn-success mt-3">Submit</button>
+    
+                    </div>
+
+                </div>
+            </div>
+
+
+    </container>
+
+
+    <script>
+
+        const loginBtn = document.getElementById("login");
+
+        loginBtn.addEventListener("click", function(){
+
+
+            const loginArea = document.getElementById("login-area");
+            loginArea.style.display="none";
+
+            const transectionArea = document.getElementById("transection-area");
+            transectionArea.style.display="block";
+        })
+
+            // Deposit handler..................
+
+
+            const depositBtn = document.getElementById("deposit-button");
+
+            depositBtn.addEventListener("click", function(){
+
+
+                const depositInput = document.getElementById("deposit-input").value;
+
+               const depositInputNumber = parseFloat(depositInput);
+
+
+               
+                spanTextUpdate("current-deposit", depositInputNumber);
+
+
+                spanTextUpdate("current-total", depositInputNumber );
+
+
+                document.getElementById("deposit-input").value="";
+
+               
+
+            })
+
+
+                
+       function spanTextUpdate(id, depositInputNumber){
+
+        
+        const current =document.getElementById(id).innerText;
+
+        const currentNumber = parseFloat(current);
+
+        const totalAmount = depositInputNumber + currentNumber;
+
+        document.getElementById(id).innerText= totalAmount;
+        
+       }
+
+
+
+       // withdrow handler -----------------------------
+
+
+
+
+
+       const witdrowBtn = document.getElementById("witdrow-button");
+
+       witdrowBtn.addEventListener("click", function(){
+
+
+        const withdrowInput = document.getElementById("withdrow-input").value;
+
+        const withdrowInputNumber = parseFloat(withdrowInput);
+
+
+        spanTextUpdate ("current-withdrow",withdrowInputNumber);
+        spanTextUpdate ("current-total", -1 * withdrowInputNumber);
+
+
+        document.getElementById("withdrow-input").value ="";
+
+        function withdrow(id, withdrowInputNumber){ 
+
+
+            const currentWithdrow = document.getElementById(id).innerText;
+
+            const currentWithdorwNumber = parseFloat(currentWithdrow);
+
+            const totalWithdrow = withdrowInputNumber + currentWithdorwNumber ;
+
+            document.getElementById(id).innerText= totalWithdrow;
+
+        }
+
+
+       })
+
+    </script>
+    
+</body>
+</html>
